@@ -1,13 +1,13 @@
-//const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 
-const User = require("../models/usermodel");
+const userModel = require("../models/usermodel");
 
 // Crétion nouvel utilisateur
 exports.signup = (req, res, next) => {
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
-      const user = new User({
+      const user = new userModel({
         email: req.body.email,
         password: hash,
       });

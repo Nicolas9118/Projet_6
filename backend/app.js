@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 // Import de la route
 const userRoutes = require("./routes/user");
+const saucesRoutes = require("./routes/sauces");
 
 // Création de app qui utilise le frameword "Express"
 const app = express();
@@ -33,5 +34,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use("/api/auth", userRoutes);
+app.use("/api/sauces", saucesRoutes);
 
 module.exports = app;

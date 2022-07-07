@@ -3,7 +3,8 @@ const express = require("express");
 const router = express.Router();
 
 // Import des middlewares des controllers que l'on a besoin
-const authorize = require("../middleware/authorize");
+/*const authorize = require("../middleware/authorize");
+const multer = require("../middleware/multer_config");*/
 const userCtrl = require("../controllers/user");
 
 //création des routes pour s'inscrire et se connecter

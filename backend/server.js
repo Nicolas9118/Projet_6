@@ -1,6 +1,8 @@
+// Import de HTTP & ./app
 const http = require("http");
 const app = require("./app");
 
+// Renvoie un port valide, qu'il soit un nombre ou une chaine
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
 
@@ -15,6 +17,7 @@ const normalizePort = (val) => {
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
+// Recherche les différentes erreurs et les gère de manière approprié. Et les enregistre dans le serveur.
 const errorHandler = (error) => {
   if (error.syscall !== "listen") {
     throw error;
@@ -36,8 +39,10 @@ const errorHandler = (error) => {
   }
 };
 
+// Création d'une constante pour les appels serveurs
 const server = http.createServer(app);
 
+// Allume le serveur + Affiche dans la console le port ou il faut se connecter.
 server.on("error", errorHandler);
 server.on("listening", () => {
   const address = server.address();

@@ -1,6 +1,7 @@
-// Appel d'Express + Mongoose
+// Appel d'Express + Mongoose + path
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require("path");
 
 // Import de la route
 const userRoutes = require("./routes/user");
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use("/api/auth", userRoutes);
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/sauces", saucesRoutes);
 
 module.exports = app;

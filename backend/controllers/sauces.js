@@ -26,12 +26,12 @@ exports.getOneSauce = (req, res, next) => {
 };
 
 exports.createSauces = (req, res, next) => {
-  const saucesObject = JSON.parse(req.body.sauces);
+  const saucesObject = JSON.parse(req.body.sauce);
   delete saucesObject._id;
   delete saucesObject._userId;
   const sauces = new Sauces({
     ...saucesObject,
-    userId: req.authorize.userId,
+    userId: req.auth.userId,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`,
@@ -53,3 +53,5 @@ exports.createSauces = (req, res, next) => {
       });
     });
 };
+
+exports.updateSauce = (req, res, next) => {};

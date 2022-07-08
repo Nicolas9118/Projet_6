@@ -112,3 +112,38 @@ exports.deleteSauce = (req, res, next) => {
       res.status(500).json({ error });
     });
 };
+
+exports.likesDislikesSauce = (req, res, next) => {
+  // créer nos constantes pour récupérer l'utilisateur et savoir si il like/dislike/rien
+  let like = req.body.like;
+  let userId = req.body.userId;
+
+  // si like = 1 c'est qu'il aime !
+  if (like == 1) {
+    // vérifié si l'user n'a pas disliker avant
+    let i = 0;
+    while (userId != usersDisliked[i]) {
+      i++;
+    }
+    if (i != usersDisliked.length) {
+      usersDisliked = usersDisliked.filter((item) => item !== userId);
+    }
+
+    //alors mettre dans le tableau usersLiked l' userID (push) et incrémenter de 1 likes
+    Sauces.updateOne(
+      { _id: req.params.id },
+      { $inc: { likes: +1 }, $push: { usersLiked: userId } }
+    )
+      .then(() => res.status(200).json({ message: "Sauce aimée !" }))
+      .catch((error) => res.status(401).json({ error }));
+  }
+  // si like = -1 c'est qu'il n'aime pas
+  /*else if (like == -1) {
+    //alors mettre dans le tableau userDisliked l'userID et dislike ++
+  }
+  // si like = 0 alors c'est qu'il pas qu'il aime ou non
+  else if (like == 0) {
+    //verif si annulé un like supprime du tableau et -1 sur le like
+    //verif si annulé un dislike supprime du tableau et -1 sur le dislike
+  }*/
+};

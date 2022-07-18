@@ -1,7 +1,9 @@
-// Appel d'Express + Mongoose + path
+// Appel d'Express + Mongoose + path + helmet
 const express = require("express");
-const mongoose = require("mongoose");
-const path = require("path");
+const mongoose = require("mongoose"); // Base de donnée
+const path = require("path"); // système de fichier, donne un accès
+const helmet = require("helmet"); // sécuritée en-tête HTTP
+const mongoSanitize = require("express-mongo-sanitize"); //protège des attaques par injection NoSQL(MongoDB) en nettoyant les données et supprime les clés incriminées
 
 // Import de la route
 const userRoutes = require("./routes/user");
@@ -11,6 +13,7 @@ const saucesRoutes = require("./routes/sauces");
 const app = express();
 
 // Connexion à la base de données MongoDb
+
 mongoose
   .connect(
     "mongodb+srv://nicolas:rolland@cluster0.ld2m2mw.mongodb.net/?retryWrites=true&w=majority",
@@ -34,6 +37,9 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use(helmet());
+app.use(mongoSanitize());
+
 app.use("/api/auth", userRoutes);
 app.use("/images", express.static(path.join(__dirname, "images")));
 app.use("/api/sauces", saucesRoutes);

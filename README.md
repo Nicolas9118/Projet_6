@@ -1,27 +1,43 @@
-# HotTakes
+# Construisez une API sécurisée pour une application d'avis gastronomiques
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
+Voici le sixième projet de la formation Openclassroom.
 
-## Development server
+Voici la situation : Le client la société Piiquante nous demande de travaillé sur une
+application web pour faire une "galerie de sauces" permettant aux utilisateurs de télécharger leurs sauces piquantes préférées et
+de liker et disliker les sauuces que d'autres partagent.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Le Front-end de l'applicationa été développé à l'aide d'Angular et à été précompilé
+après des tests internets, mais Piiquante a besoin d'un développeur back-end pour
+construire l'API.
 
-## Code scaffolding
+## Lancer localement
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Clone du projet
 
-## Build
+```bash
+  git clone https://github.com/Nicolas9118/Projet_6
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Aller dans le dossier du projet
 
-## Running unit tests
+```bash
+  cd Projet_6
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Pour lancer le frontend
 
-## Running end-to-end tests
+```bash
+  cd frontend
+  npm run start
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Pour lancer le backend
 
-## Further help
+```bash
+  cd backend
+  npm start
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Avoir accès à l'intertface sru navigateur
+
+http://localhost:4200/

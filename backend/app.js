@@ -38,6 +38,10 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(helmet());
+app.use(helmet.contentSecurityPolicy());
+app.use(helmet.crossOriginEmbedderPolicy());
+app.use(helmet.crossOriginOpenerPolicy());
+app.use(helmet.crossOriginResourcePolicy());
 app.use(mongoSanitize());
 
 app.use("/api/auth", userRoutes);

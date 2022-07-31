@@ -76,12 +76,27 @@ exports.updateSauce = (req, res, next) => {
         res.status(401).json({ message: "Not authorized" });
       } else {
         // si utilisateur correspond à l'auteur de la sauce donc mettre a jour l'enregistrement
-        Sauces.updateOne(
-          { _id: req.params.id },
-          { ...saucesObject, _id: req.params.id }
-        )
-          .then(() => res.status(200).json({ message: "Objet modifié!" }))
-          .catch((error) => res.status(401).json({ error }));
+        if (req.file) {
+          // si un nouveau fichier est affecté à l'image
+          const filename = sauces.imageUrl.split("/images/")[1]; // récupere le nom de fichier dans l'URL de l'image
+          fs.unlink(`images/${filename}`, () => {
+            // supprime l'image
+
+            Sauces.updateOne(
+              { _id: req.params.id },
+              { ...saucesObject, _id: req.params.id }
+            )
+              .then(() => res.status(200).json({ message: "Objet modifié!" }))
+              .catch((error) => res.status(401).json({ error }));
+          });
+        } else {
+          Sauces.updateOne(
+            { _id: req.params.id },
+            { ...saucesObject, _id: req.params.id }
+          )
+            .then(() => res.status(200).json({ message: "Objet modifié!" }))
+            .catch((error) => res.status(401).json({ error }));
+        }
       }
     })
     .catch((error) => {
